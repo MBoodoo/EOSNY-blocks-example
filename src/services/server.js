@@ -6,4 +6,6 @@ const getBlock = async () => {
     console.log(await rpc.history_get_actions("eosio.token").catch(err => console.error(err)))
 }
 
+// should get a block
+
 getBlock()
