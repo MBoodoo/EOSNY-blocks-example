@@ -1,10 +1,10 @@
 import React, { useState } from "react"
 import styled from "styled-components"
-import { Block } from "../App"
+import { BlockType } from "../App"
 
-interface AccordionItemProps extends Block { /* isExpanded: Boolean */}
+interface AccordionItemProps extends BlockType { /* isExpanded: Boolean */}
 
-interface AccordionProps { isLoading: Boolean, blocks: Block[] }
+interface AccordionProps { isLoading: Boolean, blocks: BlockType[] }
 
 const BlockResults:  React.FC<AccordionProps> = 
     ({
@@ -40,8 +40,6 @@ const BlockItem: React.FC<AccordionItemProps> =
         const [isExpanded, setExpanded] = useState(false)
         const [rawIsVisible, setRawVisible] = useState(false)
 
-
-
         const handleClick = () => {
             setExpanded(true)
             console.log("Clicked!")
@@ -69,8 +67,6 @@ const Accordion = styled.div`
     flex-direction: column
     width: 90%;
     height: auto;
-
-
 `
 const AccordionItem = styled.div`
     flex: 1;
@@ -78,14 +74,11 @@ const AccordionItem = styled.div`
     flex-wrap: wrap;
     justify-content: space-around; 
     overflow: scroll;
-
-    
     padding: 1em;
     margin-bottom: 1em;
     background: #E0DDCF;
     cursor: pointer;
     & > * {
-
         padding: 1em;
     }
 `
@@ -94,7 +87,4 @@ const RawItemData = styled.div`
     border: 1px solid black;
     padding: 1em;
 `
-
-
-
 export default BlockResults

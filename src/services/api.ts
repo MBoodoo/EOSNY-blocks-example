@@ -16,15 +16,13 @@ interface AxiosError<T = any> extends Error {
   toJSON: () => object
 }
 
-
 const getRecentBlockNum = async () => {
-    return await axios.post('https://api.eosnewyork.io/v1/chain/get_info', {})
+    return await axios.post('https://api.eosnewyork.io/v1/chain/get_info')
     .then((res: any) => {
         return res.data.head_block_num
     })
     .catch((err: any) => console.error(err))
 }
-
 
 const getBlockInfo = async (blockNum: number) => {
     return await axios.post('https://api.eosnewyork.io/v1/chain/get_block', {
@@ -44,7 +42,7 @@ const getBlockInfo = async (blockNum: number) => {
 // should expect data to be a string with "name" and "ricardian_contract"
 // Also should expect a Promise
 
- const getAbi = async (accountName: String) => {
+ const getAbiActions = async (accountName: String) => {
   return await axios.post('https://api.eosnewyork.io/v1/chain/get_abi', {
     account_name: accountName
   })
@@ -56,5 +54,5 @@ const getBlockInfo = async (blockNum: number) => {
 export {
   getRecentBlockNum,
   getBlockInfo,
-  getAbi
+  getAbiActions
 }

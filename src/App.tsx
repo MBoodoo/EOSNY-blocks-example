@@ -5,18 +5,24 @@ import BlockTable from "./components/Results"
 import "./App.css"
 
 // init main types
-export type Block = {
-  id: String,
-  timestamp: String,
-  transactions: Object[],
-  actions: Object[]
-  raw: object
+export type BlockType = {
+    id: String,
+    timestamp: String,
+    transactions: Object[],
+    actions: any[]
+    raw: object
+}
+
+export type abiActionType = {
+    type: string,
+    ricardian_contract: string
 }
 
 const App: React.FC = ({}) => {
   // init state
   const [isLoading, setLoading] = useState(false)
-  const [blocks, setBlocks] = useState<Block[] | any>([])
+  const [blocks, setBlocks] = useState<BlockType[] | any>([])
+  const [abiActions, setAbiActions] = useState<abiActionType | any>([])
 
   // use useContext to cleanup state
   return  <Container>
@@ -27,6 +33,7 @@ const App: React.FC = ({}) => {
             <Button isLoading={isLoading} 
                     setLoading={setLoading} 
                     setBlocks={setBlocks}
+                    setAbiActions={setAbiActions}
             /> 
           </Container>
 }
