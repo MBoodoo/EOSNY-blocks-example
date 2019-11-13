@@ -22,14 +22,13 @@ const App: React.FC = ({}) => {
   // init state
   const [isLoading, setLoading] = useState(false)
   const [blocks, setBlocks] = useState<BlockType[] | any>([])
-  const [abiActions, setAbiActions] = useState<abiActionType | any>([])
+  const [abiActions, setAbiActions] = useState<abiActionType[][] | any>([])
 
-  // use useContext to cleanup state
   return  <Container>
             <BlockTable blocks={blocks} 
                         isLoading={isLoading}
+                        abiActions={abiActions}
             />
-
             <Button isLoading={isLoading} 
                     setLoading={setLoading} 
                     setBlocks={setBlocks}
@@ -43,9 +42,6 @@ const Container = styled.div`
     height: auto;
     padding: 1.5em;
     display: flex;
-  
     place-content: center center;
-  
 `
-
 export default App;

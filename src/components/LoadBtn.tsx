@@ -25,6 +25,7 @@ export const Button: React.FC<ButtonProps> =
         const startingPoint = await getRecentBlockNum()
         const recentBlocks = await loadRecentBlocks(startingPoint)
         const abis = await loadAbis(recentBlocks)
+        console.log(abis)
 
         setBlocks(recentBlocks)
         setAbiActions(abis)
@@ -37,7 +38,7 @@ export const Button: React.FC<ButtonProps> =
             </Btn>
 }
 
-const Btn = styled.div`
+const Btn = styled.button`
     color: #2D232E;
     font-size: 22px;
     cursor: pointer;

@@ -1,14 +1,12 @@
 import React from "react"
 import { getRecentBlockNum, getBlockInfo, getAbiActions} from "../services/api"
-import { loadRecentBlocks } from "../utils"
-import { cleanup } from "@testing-library/react";
 import axios from 'axios';
 
 jest.mock("axios")
 
 afterEach(() => {
-    cleanup()
-  })
+    jest.clearAllMocks()
+})
 
 const url = 'https://api.eosnewyork.io/v1/chain'
 
@@ -64,9 +62,8 @@ const abiMock = {
         }
     }
 }
-    
 
-/////////// Cases ///////////
+/////////// Async Cases ///////////
 test('should get block num recent block number', async () => {
     axios.post.mockResolvedValue(infoMock)
     await getRecentBlockNum()
@@ -92,8 +89,8 @@ test('should get abi by account name', async () => {
     axios.post.mockResolvedValue(abiMock)
     await getAbiActions('eosio.token')
         .then(res => {
-            expect(axios.post).toHaveBeenCalledWith(url + '/get_abi', {account_name: "esosio.token"})
-            expect(res.data.abi.actions[0].type).toBe("close")
-            expect(res.data.abi.actions[0].ricardian_contract).toBe("Markdown Data")
+            expect(axios.post).toHaveBeenCalledWith(url + '/get_abi', {account_name: "eosio.token"})
+            expect(res[0].type).toBe("close")
+            expect(res[0].ricardian_contract).toBe("Markdown Data")
         })
 })

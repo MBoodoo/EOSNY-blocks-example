@@ -1,18 +1,26 @@
 import React, { useState } from "react"
 import styled from "styled-components"
-import { BlockType } from "../App"
+import { BlockType, abiActionType } from "../App"
 
-interface AccordionItemProps extends BlockType { /* isExpanded: Boolean */}
+interface AccordionItemProps extends BlockType { 
+    //isExpanded: Boolean,
+    abiActions: Array<abiActionType>
+}
 
-interface AccordionProps { isLoading: Boolean, blocks: BlockType[] }
+interface AccordionProps { 
+    isLoading: Boolean, 
+    blocks: BlockType[], 
+    abiActions: Array<abiActionType[]>
+}
 
 const BlockResults:  React.FC<AccordionProps> = 
     ({
         blocks, 
-        isLoading
+        isLoading,
+        abiActions
     }) => {
 
-    let blockResults = blocks.map(block => {
+    let blockResults = blocks.map((block, idx) => {
         return <BlockItem
                     id={block.id}
                     timestamp={block.timestamp}
@@ -20,6 +28,7 @@ const BlockResults:  React.FC<AccordionProps> =
                     //isExpanded={false}
                     raw={block.raw}
                     actions={block.actions}
+                    abiActions={abiActions[idx]}
                 />
     })
 
@@ -34,12 +43,13 @@ const BlockItem: React.FC<AccordionItemProps> =
         timestamp,
         transactions,
         raw,
-        actions
+        actions,
+        abiActions,
        // isExpanded
     }) => {
         const [isExpanded, setExpanded] = useState(false)
         const [rawIsVisible, setRawVisible] = useState(false)
-
+        
         const handleClick = () => {
             setExpanded(true)
             console.log("Clicked!")
@@ -86,5 +96,8 @@ const RawItemData = styled.div`
     width: 100%;
     border: 1px solid black;
     padding: 1em;
+`
+const RicardianContract = styled.div`
+
 `
 export default BlockResults
