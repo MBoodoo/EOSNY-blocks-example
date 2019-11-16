@@ -34,7 +34,7 @@ const getBlockInfo = async (blockNum: number) => {
     // last trx should be an object instead of string (first ones aren't objects)
     const { actions } = transactions[transactions.length - 1].trx.transaction
     
-    return {id, transactions, timestamp, actions, raw: res.data}
+    return {id, transactions, timestamp, actions, raw: JSON.parse(res.data)}
   })
   .catch((err: any) => console.error(err))
 }

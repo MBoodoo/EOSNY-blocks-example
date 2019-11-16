@@ -15,14 +15,11 @@ const loadRecentBlocks = async (recentBlockNumber: number, limit: number = 10) =
 const loadAbis = async (blockList: BlockType[]) => {
     let actionsList: Array<abiActionType[]> = []
 
-    blockList.map( async (block: BlockType) => {
-        console.log(block)
+    await blockList.map( async (block: BlockType) => {
 
         const account = block.actions[0].account
-        console.log(account)
 
         const abiActions = await getAbiActions(account)
-        console.log(abiActions)
 
         actionsList.push(abiActions)
     })

@@ -11,11 +11,13 @@
     "@types/styled-components": "^4.1.21",
     "axios": "^0.19.0",
     "eosjs": "^20.0.0",
+    "framer-motion": "^1.6.15",
     "jest": "^24.9.0",
     "jest-mock-axios": "^3.1.2",
     "node-fetch": "^2.6.0",
     "react": "^16.11.0",
     "react-dom": "^16.11.0",
+    "react-mustache": "^0.1.5",
     "react-scripts": "3.2.0",
     "styled-components": "^4.4.1"
   },

@@ -1,6 +1,8 @@
 import React, { useState } from "react"
 import styled from "styled-components"
 import { BlockType, abiActionType } from "../App"
+import ReactMustache from "react-mustache"
+
 
 interface AccordionItemProps extends BlockType { 
     //isExpanded: Boolean,
@@ -51,11 +53,20 @@ const BlockItem: React.FC<AccordionItemProps> =
         const [rawIsVisible, setRawVisible] = useState(false)
         
         const handleClick = () => {
-            setExpanded(true)
-            console.log("Clicked!")
+            setExpanded(isExpanded ? false : true)
+            console.log(isExpanded)
         }
+        //console.log(Promise.resolve(abiActions).then(data => console.log(data)))
 
-        return  <AccordionItem onClick={() => handleClick()}>
+        /*
+        let contracts = abiActions.map(abi => {
+            return <ReactMustache template={abi.ricardian_contract} />
+        }) 
+        */
+
+        return  <AccordionItem 
+                    onClick={() => handleClick()}
+                >
                     <div>
                         Block ID: <br/> {id}
                     </div>
@@ -66,7 +77,7 @@ const BlockItem: React.FC<AccordionItemProps> =
                         Action/Transaction Count: <br/> {transactions.length}
                     </div>
                     {isExpanded && 
-                      null  
+                       null //contracts
                     }
                 </AccordionItem>
 
@@ -88,8 +99,13 @@ const AccordionItem = styled.div`
     margin-bottom: 1em;
     background: #E0DDCF;
     cursor: pointer;
+    transition: all 0.3s ease-out;
     & > * {
         padding: 1em;
+    }
+    &:hover {
+        background: #2D232E;
+        color: #E0DDCF;
     }
 `
 const RawItemData = styled.div`

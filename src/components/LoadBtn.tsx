@@ -25,10 +25,9 @@ export const Button: React.FC<ButtonProps> =
         const startingPoint = await getRecentBlockNum()
         const recentBlocks = await loadRecentBlocks(startingPoint)
         const abis = await loadAbis(recentBlocks)
-        console.log(abis)
 
-        setBlocks(recentBlocks)
-        setAbiActions(abis)
+        await setBlocks(recentBlocks)
+        await setAbiActions(abis)
 
         return setLoading(false)
     }

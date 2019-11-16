@@ -20,12 +20,17 @@ export type abiActionType = {
 
 const App: React.FC = ({}) => {
   // init state
+  const [user, setUser] = useState({
+    username: "",
+    key: ""
+  })
   const [isLoading, setLoading] = useState(false)
   const [blocks, setBlocks] = useState<BlockType[] | any>([])
-  const [abiActions, setAbiActions] = useState<abiActionType[][] | any>([])
+  const [abiActions, setAbiActions] = useState<Array<abiActionType[]> | any>([])
+
 
   return  <Container>
-            <BlockTable blocks={blocks} 
+            <BlockTable blocks={blocks}
                         isLoading={isLoading}
                         abiActions={abiActions}
             />
