@@ -2,8 +2,6 @@ import React, { useState } from "react"
 import styled from "styled-components"
 import Eos from "../services/EosService"
 
-//interface FormPr
-
 export default ({setUser, user}) => {
     const [form, setForm] = useState({
         username: "",
